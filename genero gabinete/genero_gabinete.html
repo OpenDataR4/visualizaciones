@@ -1,0 +1,22 @@
+<html>
+  <head>
+    <meta charset="utf-8"></meta>
+<h2> Composición por género del gabinete </h2>
+<div id="chartContainer">
+  <script src="https://d3js.org/d3.v3.min.js"></script>
+  <script src="http://dimplejs.org/dist/dimple.v2.2.0.min.js"></script>
+  <script type="text/javascript">
+    var svg = dimple.newSvg("#chartContainer", 590, 400);
+    d3.tsv("genero_gabinete.tsv", function (data) {
+      var myChart = new dimple.chart(svg, data);
+      myChart.setBounds(75, 30, 350, 50)
+      myChart.addPctAxis("x", "Porcentaje");
+      var y = myChart.addCategoryAxis("y", "Month");
+      y.title = null
+      myChart.addSeries("Channel", dimple.plot.bar);
+      myChart.addLegend(60, 10, 510, 20, "right");
+      myChart.draw();
+    });
+  </script>
+</div>
+</html>
